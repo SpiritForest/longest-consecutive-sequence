@@ -1,19 +1,13 @@
 module.exports = function longestConsecutiveLength(array) {
-  var mass = [], massCounter = [];
-  var counter = 1; maxSequence = 1;
-  mass = array.sort(function(a, b){return a - b});
+  var counter = 1, maxSeq = 0;
+  if (array.length < 2) {return array.length;}
+  if (array.length < 10) array.sort((a, b) => a - b)
 
-  if (mass.length == 0) return maxSequence = 0;
-  if (mass.length == 1) return maxSequence = 1;
-
-  for (var i = 0; i < mass.length; i++){
-  	if (i == mass.length - 1) break;
-  	if (mass[i] == mass[i+1]) continue;
-  	if (mass[i] + 1 == mass[i+1]) {counter++;}
-  	if (mass[i] + 1 != mass[i+1]) {
-  		if (counter > maxSequence) maxSequence = counter;
-  		counter = 1;
-  	}
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] + 1 == array[i+1]) {counter++;}
+    if (array[i] == array[i+1]) continue;
+    if (counter > maxSeq) {maxSeq = counter;}
+    if (array[i] + 1 != array[i+1]) {counter = 1;}
   }
-  return maxSequence;
+  return maxSeq;
 }
